@@ -1,0 +1,180 @@
+:root{
+    --primary: #00B4D8; /* Primäre Farbe | 30% */
+    --secondary: #D91667; /* Sekundäre Farbe | 10% */
+    --background: #1D1D1D; /* Hintergrund-, Standartfarbe | 60% */
+    --text-color: #f1f1f1; /* Standart Schriftfarbe */
+}
+
+*{
+    margin:0; /* Aussenabstand für alle Objekte 0*/
+    padding:0; /*Innenabstand für alle Objekte 0*/
+    font-family: sans-serif; /*Standart Schrift*/
+    font-size: 16px; /*Standart Schriftgröße*/
+    color: var(--text-color); /*Jedes Element was eine Schriftfarbe annehmen kann, bekommt nun diese standartmäßig zugewiesen. */
+}
+
+html, body{
+    overflow-x: hidden; /* Alles was über den horizontalen Bildschirmrand raus geht, wird standartmäßig nicht angezeigt = man kann nicht horizontal Scrollen */
+    scroll-behavior: smooth; /* Wir werden später innerhalb der Seite Sprungpunkte einbauen. Damit das nicht so abgehackt aussieht, haben wir hier definiert, dass es Smooth ist. Aber später dazu mehr. */
+}
+
+/* --====== Hier wird der Style der Navbar definiert. ======-- */
+
+header{
+    height: 10vh; /* Hat eine absolute Höhe von 10vh. vh =  von hundert, 10vh = 10 von hundert = 10% */
+    width: 100%; /* Responsive Weite. Passt sich immer dem Browserfenster an */
+
+    position: relative; /* Gibt eine relative Position an. Alles was danach mit postion: absolute definiert wird, orientiert sich hierdran. */
+}
+
+header nav{
+    height: 100%; /* Definition für die gleiche Höhe wie des Headers. Der Header ist hier das Elternelment, auf das die nav zurückgreift */
+    width: 100%; /* Genau das selbe gilt für die width */
+
+    background-color: var(--background);
+}
+
+header nav .nav-menü{
+    display: flex; /* Genaueres könnt ihr hier lesen: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+    justify-content: space-around; /* Die Gegenstände sind gleichmäßig in der Reihe verteilt und haben gleich viel Platz um sie herum. Beachtet, dass die Abstände visuell nicht gleich sind, da alle Elemente auf beiden Seiten gleich viel Platz haben. */
+    align-items: center; /* Positionierung der Items auf der vertikalen Achse */
+
+    height: 100%; /* Definition für die gleiche Höhe wie des Elternelemnts*/ 
+    width: 100%; /* Genau das selbe gilt für die width */
+}
+
+header nav .nav-menü .nav-menü-list-items{
+    display: flex; /* Genaueres könnt ihr hier lesen: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+    justify-content: space-around; /* Die Gegenstände sind gleichmäßig in der Reihe verteilt und haben gleich viel Platz um sie herum. Beachtet, dass die Abstände visuell nicht gleich sind, da alle Elemente auf beiden Seiten gleich viel Platz haben. */
+    align-items: center; /* Positionierung der Items auf der vertikalen Achse */
+
+    height: 100%; /*Bekommt die Höhe des Elternelements */
+    width: 35%; /* In der Navbar sind 3 divs enthalten. Jede div hatte bis gerade eben die gleiche width. Wir haben diesen Wert jetzt aber geändert, weil es so schöner aussieht. Wir geben den Elementen in dieser Div, die wir gerade bearbeiten, mehr Platz zum "Atmen". Kann man mit Background-color: red; veranschaulichen. */
+
+    /*background-color: red;*/ /* <= Zur Veranschaulichung auskommentieren! */
+}
+
+header nav .nav-menü .nav-menü-list-items li{
+    list-style: none; /* Macht die Punkte der Liste weg */ 
+
+    position: relative; /* Gibt eine relative Position des Elements an, sodass sich das Kindelement an diesem Elternelement orientieren kann. */
+
+    cursor: pointer; /* Macht den Cursor zu einem "Link-" Cursor*/
+}
+
+header nav .nav-menü .nav-menü-list-items li::before{ /* Wenn man über die Navigaionspunkte hovert, sollen diese Unterstrichen werden. Dafür benutzen wir ::before. Hier werden ::before und ::after sehr gut auf Deutsch erklärt: https://youtu.be/VaRILz4GC1U */
+    content: ''; /* Muss da sein, ansonsten funktioniert das Pseudoelement nicht. */
+
+    position: absolute; /*Das Element bekommt eine absolute Position */
+    bottom: 0; /* Angabe der Position auf der y Achse */
+    left: 0; /* Angabe der Position auf der x Achse */
+
+    height: 1px; /* Höhe des Elements */
+    width: 0%; /* Weite des Elements. Da es standartmäßig noch nicht zu sehen sein soll, setzen wir die Breite des Elements erstmal auf 0. Wenn wir darüber hovern wird diese jedoch geändert. */
+
+    background-color: var(--text-color); /* Hiermit geben wir die Farbe des Elements an. */
+
+    transition: .3s ease-in-out 0s;  /* Übergang zwischen den verschiedenen Zuständen. */
+}
+
+header nav .nav-menü .nav-menü-list-items li:hover:before{ /* Wenn Maus über das Element fährt Status*/
+    content: ''; /* Muss da sein, ansonsten funktioniert das Pseudoelement nicht. */
+
+    width: 100%; /* Weite des Elements. Da es standartmäßig noch nicht zu sehen sein soll, setzen wir die Breite des Elements erstmal auf 0. Wenn wir darüber hovern wird diese jedoch geändert. */
+}
+
+header nav .nav-menü .nav-contact-button button {
+    background-color: var(--primary); /* Hintergrundfarbe des Buttons */
+    color: var(--background); /* Schriftfarbe des Buttons */
+
+    border: none; /* Der Button bekommt keinen Rand */
+    border-radius: 3px; /* Der Button bekommt leicht abgerundete Ecken */
+
+    height: 50px; /* Absolute Höhe */
+    width: 150px; /* Absolute Breite */
+
+    transition: .3s ease-in-out 0s; /* Gibt den Übergang zwischen den beiden Zuständen des Buttons an (ohne Hover und mit Hover )*/
+}
+
+header nav .nav-menü .nav-contact-button button:hover{
+    background-color: transparent; /* Hintergrundfarbe des Buttons wird auf Transparent geändert */
+    color: var(--text-color); /* Schriftfarbe des Buttons wird auf ein Weiß geändert */
+
+    border: 2px solid var(--primary); /* Der Button bekommt einen Rand von 2px */
+}
+
+nav .nav-menü .hamburger{
+    display: none; /* Wir wollen nicht das die Linien für das Mobile Design in der Desktop Version zu sehen sind. Deswegen wird das Display auf "keins" gesetzt. */
+}
+
+@media screen and (max-width: 786px) { /* Hier wird definiert, ab wann das Design für Mobile Geräte angreift. */
+    nav .nav-menü-list-items, .nav-contact-button{
+        z-index: -10; /* Wir schieben alle Punkte und den Button in den nicht sichtbaren Hintergrund */
+    }
+
+    nav .logo{ /* Das Logo wird in der Mobilversion in die Mitte der Navbar verschoben */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Ausgleich zur absoluten Positionierung. */
+    }
+
+    nav .nav-menü .hamburger{ /* Hier werden die Linien definiert, mit denen das Menü das ausgefahren werden kann */
+        display: block; /* Wir haben das Display vorhin auf Display: none; gesetzt. Um es Sichtbar zu machen, setzen wir es hier wieder auf block - den Standart */
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        transform: translateY(-50%);
+    }
+
+    nav .nav-menü .hamburger .line { /* Alle Linien des Hamburgers werden hier definiert. */
+        width: 30px;
+        height: 3px;
+        background: var(--primary);
+        margin: 5px;
+     }
+
+     header.open{ /* Wenn man auf den Hamburger klickt, wird per JavaScript eine Klasse hinzugefügt. Das CSS sagt nun = Wenn diese Klasse vorhanden ist, mach das! Wenn die Klasse "open" in dem Element "header" vorhanden ist, wird der Code ausgeführt. */
+         height: 100vh;
+         width: 100%;
+         background-color: var(--background);
+     }
+
+     header.open nav{
+         position: relative;
+     }
+
+     header.open nav .hamburger{ 
+        display: block;
+        position: absolute;
+        top: 5%; /* Wenn wir die absolute Positionierung top: 50% lassen würden, würde der Hamburger immer in der Mitte sein, wenn wir auf ihn geklickt haben. */
+        right: 5%;
+        transform: translateY(-50%); /* Ausgleich für die absolute Positionierung */
+     }
+
+     header.open nav .logo{ 
+        position: absolute;
+        top: 5%; /* Das gleiche Problem (mit der Mitte) hat auch das Logo, deswegen steht hier der gleiche Code */ 
+        left: 50%;
+        transform: translate(-50%, -50%);
+     }
+
+     header.open nav .nav-menü-list-items{ /* Und jetzt machen wir noch wieder die Nav-Links sichtbar und ordnen sie nur anders an. */
+         z-index: 5;
+         flex-direction: column;
+         position: absolute;
+         top: 15%;
+         left: 50%;
+         transform: translate(-50%);
+         height: 50%;
+         width: 100%;
+         align-items: center;
+     }
+
+     header.open nav .nav-contact-button{ /* Der Button muss auch noch sichtbar gemacht werden und neu positioniet werden. */
+        z-index: 5;
+        position: absolute;
+        bottom: 25%;
+     }
+}
+
